@@ -27,7 +27,7 @@
                 moneyBetted = 0;
 
                 // betting money
-                Console.WriteLine("You have: " + playerCash + " dollers, how much would you like to bet?");
+                Console.WriteLine("You have: " + playerCash + " dollars, how much would you like to bet?");
                 while (moneyBetted == 0)
                 {
                     BetMoney(ref moneyBetted, ref playerCash);
@@ -39,7 +39,7 @@
                     if (playerStopped && dealerStopped)
                     {
                         Winner(ref dealerStopped, ref playerStopped, ref playerNumber, ref dealerNumber, ref playerCash, ref moneyBetted);
-                        PlayAgain(ref isPlaying);
+                        PlayAgain(ref isPlaying, ref playerCash);
                         break;
                     }
 
@@ -90,7 +90,7 @@
                         {
                             Console.WriteLine("Dealer went over 21, you won!");
                             playerCash += (moneyBetted * 2);
-                            PlayAgain(ref isPlaying);
+                            PlayAgain(ref isPlaying, ref playerCash);
                             break;
                         }
                     }
@@ -98,15 +98,15 @@
                     // If someone exactly gets 21
                     if (playerNumber == 21)
                     {
-                        Console.WriteLine("\n you got 21, you won! (+" + (moneyBetted * 2) + " dollers)");
+                        Console.WriteLine("\n you got 21, you won! (+" + (moneyBetted * 2) + " dollars)");
                         playerCash += (moneyBetted * 2);
-                        PlayAgain(ref isPlaying);
+                        PlayAgain(ref isPlaying, ref playerCash);
                         break;
                     }
                     else if (dealerNumber == 21)
                     {
-                        Console.WriteLine("\n Dealer got 21, he won! (-" + moneyBetted + " dollers)");
-                        PlayAgain(ref isPlaying);
+                        Console.WriteLine("\n Dealer got 21, he won! (-" + moneyBetted + " dollars)");
+                        PlayAgain(ref isPlaying, ref playerCash);
                         break;
                     }
                 }
@@ -114,14 +114,14 @@
                 // if someone goes over 21
                 if (playerNumber > 21)
                 {
-                    Console.WriteLine("you went over 21, dealer won! (-" + moneyBetted + " dollers)");
-                    PlayAgain(ref isPlaying);
+                    Console.WriteLine("you went over 21, dealer won! (-" + moneyBetted + " dollars)");
+                    PlayAgain(ref isPlaying, ref playerCash);
                 }
                 else if (dealerNumber > 21)
                 {
-                    Console.WriteLine("dealer went over 21, you won! (+" + moneyBetted * 2 + " dollers)");
+                    Console.WriteLine("dealer went over 21, you won! (+" + moneyBetted * 2 + " dollars)");
                     playerCash += (moneyBetted * 2);
-                    PlayAgain(ref isPlaying);
+                    PlayAgain(ref isPlaying, ref playerCash);
                 }
             }
 
@@ -147,11 +147,11 @@
 
                 if (dealerNumber > playerNumber)
                 {
-                    Console.WriteLine("Dealer won, you lost: " + moneyBet + " dollers.");
+                    Console.WriteLine("Dealer won, you lost: " + moneyBet + " dollars.");
                 }
                 else if (playerNumber > dealerNumber)
                 {
-                    Console.WriteLine("You won and you got: " + (moneyBet * 2) + " dollers.");
+                    Console.WriteLine("You won and you got: " + (moneyBet * 2) + " dollars.");
                     playerMoney += (moneyBet * 2);
                 }
                 else
@@ -163,8 +163,10 @@
             }
 
             // Play again function
-            static void PlayAgain(ref bool isPlaying)
+            static void PlayAgain(ref bool isPlaying, ref int playerCash)
             {
+             if(playerCash > 0)
+              {
                 Console.WriteLine("Would you like to play again? [Yes, No]");
                 string ans = Console.ReadLine();
 
@@ -174,6 +176,13 @@
                 }
                 else if (ans.ToLower().Trim() == "no")
                 {
+                    isPlaying = false;
+                }
+
+              }
+                else
+                {
+                    Console.WriteLine("You have lost all your money");
                     isPlaying = false;
                 }
             }
