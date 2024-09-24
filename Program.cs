@@ -27,7 +27,7 @@
                 moneyBetted = 0;
 
                 // betting money
-                Console.WriteLine("You have: " + playerCash + " money, how much would you like to bet?");
+                Console.WriteLine("You have: " + playerCash + " dollers, how much would you like to bet?");
                 while (moneyBetted == 0)
                 {
                     BetMoney(ref moneyBetted, ref playerCash);
@@ -98,14 +98,14 @@
                     // If someone exactly gets 21
                     if (playerNumber == 21)
                     {
-                        Console.WriteLine("\n you got 21, you won! (+" + (moneyBetted * 2) + " money)");
+                        Console.WriteLine("\n you got 21, you won! (+" + (moneyBetted * 2) + " dollers)");
                         playerCash += (moneyBetted * 2);
                         PlayAgain(ref isPlaying);
                         break;
                     }
                     else if (dealerNumber == 21)
                     {
-                        Console.WriteLine("\n Dealer got 21, he won! (-" + moneyBetted + " money)");
+                        Console.WriteLine("\n Dealer got 21, he won! (-" + moneyBetted + " dollers)");
                         PlayAgain(ref isPlaying);
                         break;
                     }
@@ -114,12 +114,12 @@
                 // if someone goes over 21
                 if (playerNumber > 21)
                 {
-                    Console.WriteLine("you went over 21, dealer won! (-" + moneyBetted + " money)");
+                    Console.WriteLine("you went over 21, dealer won! (-" + moneyBetted + " dollers)");
                     PlayAgain(ref isPlaying);
                 }
                 else if (dealerNumber > 21)
                 {
-                    Console.WriteLine("dealer went over 21, you won! (+" + moneyBetted * 2 + " money)");
+                    Console.WriteLine("dealer went over 21, you won! (+" + moneyBetted * 2 + " dollers)");
                     playerCash += (moneyBetted * 2);
                     PlayAgain(ref isPlaying);
                 }
@@ -147,11 +147,11 @@
 
                 if (dealerNumber > playerNumber)
                 {
-                    Console.WriteLine("Dealer won, you lost: " + moneyBet + " money.");
+                    Console.WriteLine("Dealer won, you lost: " + moneyBet + " dollers.");
                 }
                 else if (playerNumber > dealerNumber)
                 {
-                    Console.WriteLine("You won and you got: " + (moneyBet * 2) + " money.");
+                    Console.WriteLine("You won and you got: " + (moneyBet * 2) + " dollers.");
                     playerMoney += (moneyBet * 2);
                 }
                 else
@@ -189,7 +189,7 @@
                     {
                         moneyBetted = int.Parse(reply);
                         playerCash -= moneyBetted;
-                        Console.WriteLine("You have bet: " + moneyBetted + " money.");
+                        Console.WriteLine("You have bet: " + moneyBetted + " dollers.");
                     }
                     else
                     {
