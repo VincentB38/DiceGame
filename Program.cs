@@ -165,6 +165,7 @@
             // Play again function
             static void PlayAgain(ref bool isPlaying, ref int playerCash)
             {
+
              if(playerCash > 0)
               {
                 Console.WriteLine("Would you like to play again? [Yes, No]");
